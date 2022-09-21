@@ -1,0 +1,14 @@
+// PATH
+const path = require("path");
+
+// DOTENV
+require("dotenv").config();
+
+const databaseFolderPath = path.join(__dirname, "src", "database");
+
+module.exports = {
+  config: path.resolve(databaseFolderPath, "config", "config.js"),
+  "models-path": path.resolve(databaseFolderPath, "models"),
+  "seeders-path": path.resolve(databaseFolderPath, "seeders"),
+  "migrations-path": path.resolve(databaseFolderPath, "migrations"),
+};
