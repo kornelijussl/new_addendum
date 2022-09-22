@@ -9,9 +9,6 @@ import Typography from "@mui/material/Typography";
 import MuiAppBar from "@mui/material/AppBar";
 import { styled } from "@mui/material/styles";
 
-// COMPONENTS
-import FlagsSelect from "./FlagsSelect";
-
 // ---------------------------------------------------------------------------
 
 const drawerWidth = 240;

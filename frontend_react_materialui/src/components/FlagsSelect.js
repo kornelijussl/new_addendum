@@ -10,9 +10,6 @@ import { useTranslation } from "react-i18next";
 // CONTEXT
 import { i18nContext } from "../context/I18nContext";
 
-// CSS
-import "./FlagsSelect.css";
-
 // ------------------------------------------------------------
 
 export default function FlagsSelect() {
