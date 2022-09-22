@@ -5,7 +5,7 @@ module.exports = {
           "id" SERIAL, 
           "patientName" VARCHAR(255) NOT NULL,
           "patientSurname" VARCHAR(255) NOT NULL,
-          "appointmentDate" TIMESTAMP WITH TIME ZONE NOT NULL,
+          "appointmentDateTime" TIMESTAMP WITH TIME ZONE NOT NULL,
           "createdAt" TIMESTAMP WITH TIME ZONE NOT NULL, 
           "updatedAt" TIMESTAMP WITH TIME ZONE NOT NULL, 
           PRIMARY KEY ("id")
