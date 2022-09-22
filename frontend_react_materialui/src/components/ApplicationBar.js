@@ -44,7 +44,6 @@ export default function ApplicationBar({ open, toggleDrawer }) {
       >
         <IconButton
           edge="start"
-          color="inherit"
           aria-label="open drawer"
           onClick={toggleDrawer}
           sx={{
@@ -63,7 +62,6 @@ export default function ApplicationBar({ open, toggleDrawer }) {
         >
           Addendum
         </Typography>
-        <FlagsSelect />
       </Toolbar>
     </StyledApplicationBar>
   );
