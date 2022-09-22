@@ -13,7 +13,7 @@ export default sequelizeInstance.define(
   {
     patientName: DataTypes.STRING,
     patientSurname: DataTypes.STRING,
-    appointmentDate: DataTypes.DATE,
+    appointmentDateTime: DataTypes.DATE,
   },
   {
     tableName: "appointments",
