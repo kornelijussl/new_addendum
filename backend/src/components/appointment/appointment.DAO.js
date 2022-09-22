@@ -39,11 +39,11 @@ class AppointmentDAO {
     try {
       const patientsLastAppointment = await Appointment.findAll({
         where: { patientName, patientSurname },
-        order: [["appointmentDate", "DESC"]],
+        order: [["appointmentDateTime", "DESC"]],
         limit: 1,
         raw: true,
       });
-      return patientsLastAppointment[0]
+      return patientsLastAppointment[0];
     } catch (error) {
       errorLogger(error);
       throw error;
