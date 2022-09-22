@@ -27,7 +27,8 @@ class AppointmentService {
 
   async createAppointment(appointmentDTO) {
     try {
-      const { patientName, patientSurname, appointmentDate } = appointmentDTO;
+      const { patientName, patientSurname, appointmentDateTime } =
+        appointmentDTO;
 
       const patientsLastAppointment =
         await appointmentDAO.findPatientsLastAppointmentByPatientNameAndPatientSurname(
@@ -37,8 +38,9 @@ class AppointmentService {
 
       if (patientsLastAppointment) {
         appointmentUtils.checkIfAppointmentIsNotEarlierThanAWeek({
-          patientsLastAppointmentDate: patientsLastAppointment.appointmentDate,
-          appointmentDate,
+          patientsLastAppointmentDate:
+            patientsLastAppointment.appointmentDateTime,
+          appointmentDateTime,
         });
       }
 
