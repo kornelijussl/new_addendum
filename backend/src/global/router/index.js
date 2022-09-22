@@ -9,6 +9,6 @@ import appointmentRoutes from "../../components/appointment/appointment.routes";
 
 // -------------------------------------------------------------------------------
 
-router.use("/api/appointment", appointmentRoutes);
+router.use("/api", appointmentRoutes);
 
 export default router;
