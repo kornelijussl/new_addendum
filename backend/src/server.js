@@ -11,7 +11,15 @@ import express from "express";
 // DEBUG
 import debug from "debug";
 
+// CORS
+import cors from "cors";
+
 (async () => {
+  const corsOptions = {
+    origin: new RegExp("http://localhost:3000"),
+    credentials: true,
+  };
+
   global.appRoot = path.resolve(dirname(fileURLToPath(import.meta.url)));
   const logger = debug("addendum-backend:server");
   configEnvironmentVariables();
@@ -21,6 +29,8 @@ import debug from "debug";
   const host = "0.0.0.0";
   const port = 8080;
 
+  // MIDDLEWARES
+  app.use(cors(corsOptions));
   app.use(express.json({ limit: "50mb" }));
 
   // ROUTES
