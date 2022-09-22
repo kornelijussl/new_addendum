@@ -17,7 +17,7 @@ const errorLogger = debug("addendum:appointment.routes:error");
 
 const router = express.Router();
 
-router.get("/", async (req, res) => {
+router.get("/appointments", async (req, res) => {
   try {
     const appointments = await appointmentService.getAllAppointments();
     res.status(constants.HTTP_STATUS_OK).json(appointments);
@@ -27,7 +27,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
+router.post("/appointment", async (req, res) => {
   try {
     const { appointmentDTO } = req.body;
     await appointmentService.createAppointment(appointmentDTO);
