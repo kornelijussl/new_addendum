@@ -21,6 +21,10 @@ i18n
             submitButtonText: "Register",
             successText: "Appointment Created!",
           },
+          Drawer: {
+            drawerNavigationNewAppointment: "New Reservation",
+            drawerNavigationCalendar: "Calendar",
+          },
         },
       },
       LT: {
@@ -31,6 +35,10 @@ i18n
             patientSurname: "Paciento Pavardė",
             submitButtonText: "Registruoti",
             successText: "Rezervacija Sėkminga!",
+          },
+          Drawer: {
+            drawerNavigationNewAppointment: "Nauja Rezervacija",
+            drawerNavigationCalendar: "Kalendorius",
           },
         },
       },

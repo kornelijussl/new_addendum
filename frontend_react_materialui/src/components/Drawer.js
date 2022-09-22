@@ -18,6 +18,9 @@ import { styled } from "@mui/material/styles";
 // REACT ROUTER DOM
 import { NavLink } from "react-router-dom";
 
+// REACT-I18NEXT
+import { useTranslation } from "react-i18next";
+
 // -------------------------------------------------------------------------------------------------------
 
 const drawerWidth = 240;
@@ -49,6 +52,10 @@ const StyledDrawer = styled(MuiDrawer, {
 }));
 
 export default function Drawer({ open, toggleDrawer }) {
+  // ### HOOKS
+
+  const { t } = useTranslation();
+
   return (
     <StyledDrawer variant="permanent" open={open}>
       <Toolbar
@@ -77,7 +84,7 @@ export default function Drawer({ open, toggleDrawer }) {
                 sx={{
                   textDecoration: "none",
                 }}
-                primary="New"
+                primary={t("Drawer.drawerNavigationNewAppointment")}
               />
             </ListItemButton>
           </NavLink>
@@ -95,7 +102,7 @@ export default function Drawer({ open, toggleDrawer }) {
                 sx={{
                   textDecoration: "none",
                 }}
-                primary="Calendar"
+                primary={t("Drawer.drawerNavigationCalendar")}
               />
             </ListItemButton>
           </NavLink>
