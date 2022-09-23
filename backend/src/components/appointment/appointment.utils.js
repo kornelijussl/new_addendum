@@ -1,3 +1,6 @@
+// DAL
+import appointmentDAO from "./appointment.DAO";
+
 class AppointmentUtils {
   checkIfAppointmentIsNotEarlierThanAWeek({
     patientsLastAppointmentDate,
@@ -16,6 +19,19 @@ class AppointmentUtils {
     ) {
       throw "Appointment is earlier than a week";
     }
+  }
+
+  async checkIfAppointmentDateTimeIsFree({ appointmentDateTime, transaction }) {
+    const getAllAppointmentsDateTimes =
+      await appointmentDAO.getAllAppointmentsDateTimes(transaction);
+
+    getAllAppointmentsDateTimes.forEach((existingAppointmentDateTime) => {
+      if (
+        Date.parse(existingAppointmentDateTime) ===
+        Date.parse(appointmentDateTime)
+      )
+        throw "The date time of appointment is already taken.";
+    });
   }
 }
 
