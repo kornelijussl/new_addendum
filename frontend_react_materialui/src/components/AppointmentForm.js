@@ -13,6 +13,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import AddIcon from "@mui/icons-material/Add";
 import { IconButton } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 // COMPONENTS
 
@@ -51,6 +52,7 @@ export default function AppointmentForm({
 
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const { t } = useTranslation();
+  const widthIsMoreThan600px = useMediaQuery("(min-width:600px)");
 
   // ### HANDLERS
 
@@ -135,7 +137,14 @@ export default function AppointmentForm({
               <Typography align="center" component="h1" variant="h5">
                 {t("AppointmentForm.createAppointmentText")}
               </Typography>
-              <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
+              <Box
+                sx={{
+                  transform: widthIsMoreThan600px ? "scale(1)" : "scale(0.9)",
+                  mt: 1,
+                }}
+                component="form"
+                onSubmit={handleSubmit}
+              >
                 <TextField
                   margin="normal"
                   label={t("AppointmentForm.patientName")}
