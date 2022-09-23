@@ -58,7 +58,7 @@ export default function Main() {
           </Box>
 
           <Container maxWidth="xl">
-            <Paper sx={{ p: 2, m: 2, width: "100%" }}>
+            <Paper sx={{ p: 2, m: 2 }}>
               <AppointmentForm
                 setIsAppointmentFormLoading={setIsAppointmentFormLoading}
                 isAppointmentFormLoading={isAppointmentFormLoading}
