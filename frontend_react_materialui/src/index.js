@@ -14,7 +14,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import Routes from "./router/Routes";
 
 // i18n
-import "./i18n";
+import "./i18n/i18n";
 import I18nContextProvider from "./context/I18nContext";
 
 // ----------------------------------------------------------------------------------------------------
