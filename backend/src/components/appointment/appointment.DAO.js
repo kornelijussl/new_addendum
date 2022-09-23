@@ -1,9 +1,6 @@
 // DEBUG
 import debug from "debug";
 
-// SEQUELIZE INSTANCE
-import sequelizeInstance from "../../database";
-
 // MODELS
 import Appointment from "../../database/models/Appointment";
 
@@ -21,11 +18,9 @@ class AppointmentDAO {
     }
   }
 
-  async createAppointment(appointmentDTO) {
+  async createAppointment({ appointmentDTO, transaction }) {
     try {
-      await sequelizeInstance.transaction(async (t) => {
-        await Appointment.create(appointmentDTO, { transaction: t });
-      });
+      await Appointment.create(appointmentDTO, { transaction });
     } catch (error) {
       errorLogger(error);
       throw error;
@@ -44,6 +39,23 @@ class AppointmentDAO {
         raw: true,
       });
       return patientsLastAppointment[0];
+    } catch (error) {
+      errorLogger(error);
+      throw error;
+    }
+  }
+
+  async getAllAppointmentsDateTimes(transaction) {
+    try {
+      const appointmentDateTimes = await Appointment.findAll({
+        attributes: ["appointmentDateTime"],
+        raw: true,
+        transaction,
+      });
+
+      return appointmentDateTimes.map(
+        ({ appointmentDateTime }) => appointmentDateTime,
+      );
     } catch (error) {
       errorLogger(error);
       throw error;
