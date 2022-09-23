@@ -8,8 +8,10 @@ import Appointment from "../../database/models/Appointment";
 import appointmentDAO from "./appointment.DAO";
 
 // UTILS
-
 import appointmentUtils from "./appointment.utils";
+
+// SEQUELIZE INSTANCE
+import sequelizeInstance from "../../database";
 
 // ---------------------------------------------------------------------------------
 
@@ -27,24 +29,34 @@ class AppointmentService {
 
   async createAppointment(appointmentDTO) {
     try {
-      const { patientName, patientSurname, appointmentDateTime } =
-        appointmentDTO;
+      await sequelizeInstance.transaction(async (t) => {
+        const { patientName, patientSurname, appointmentDateTime } =
+          appointmentDTO;
 
-      const patientsLastAppointment =
-        await appointmentDAO.findPatientsLastAppointmentByPatientNameAndPatientSurname(
-          patientName,
-          patientSurname,
-        );
-
-      if (patientsLastAppointment) {
-        appointmentUtils.checkIfAppointmentIsNotEarlierThanAWeek({
-          patientsLastAppointmentDate:
-            patientsLastAppointment.appointmentDateTime,
+        await appointmentUtils.checkIfAppointmentDateTimeIsFree({
           appointmentDateTime,
+          transaction: t,
         });
-      }
 
-      await appointmentDAO.createAppointment(appointmentDTO);
+        const patientsLastAppointment =
+          await appointmentDAO.findPatientsLastAppointmentByPatientNameAndPatientSurname(
+            patientName,
+            patientSurname,
+          );
+
+        if (patientsLastAppointment) {
+          appointmentUtils.checkIfAppointmentIsNotEarlierThanAWeek({
+            patientsLastAppointmentDate:
+              patientsLastAppointment.appointmentDateTime,
+            appointmentDateTime,
+          });
+        }
+
+        await appointmentDAO.createAppointment({
+          appointmentDTO,
+          transaction: t,
+        });
+      });
     } catch (error) {
       errorLogger(error);
       throw error;
